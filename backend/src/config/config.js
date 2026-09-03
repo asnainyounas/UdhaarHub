@@ -21,4 +21,5 @@ const config = {
   JWT_EXPIRY: JWT_EXPIRY,
 };
 
+
 module.exports = config;
