@@ -1,18 +1,23 @@
-const express = require("express");
-const cors = require("cors");
+const express = require('express');
 
 const app = express();
 
-// Middlewares
-app.use(cors());
+// Global Middleware
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
-// Test Route
-app.get("/", (req, res) => {
-  res.json({
-    success: true,
-    message: "Udhaar Hub API is running...",
+// Auth Routes
+app.use('/api/auth', require('./routes/auth.routes'));
+app.use('/api/debtors', require('./routes/debtor.routes'));
+app.use('/api/charges', require('./routes/charge.routes'));
+app.use('/api/payments', require('./routes/payment.routes'));
+
+// Global Error Handler
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+
+  res.status(500).json({
+    success: false,
+    message: 'Internal Server Error',
   });
 });
 

@@ -1,7 +1,5 @@
-require("dotenv").config();
-
-const app = require("./src/app");
-const connectDB = require("./src/config/db");
+const app = require('./src/app');
+const connectDB = require('./src/config/db');
 const dns = require('dns');
 
 dns.setServers(['1.1.1.1', '8.8.8.8']);
@@ -16,23 +14,9 @@ const startServer = async () => {
       console.log(`🚀 Server is running on port ${PORT}`);
     });
   } catch (error) {
-    console.error("Failed to start server");
+    console.error('Failed to start server:', error.message);
+    process.exit(1);
   }
 };
 
 startServer();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
